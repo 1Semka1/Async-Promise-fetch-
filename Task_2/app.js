@@ -29,7 +29,13 @@ function getUsersByids(usersIds) {
   const requests = usersIds.map((user) => fetch(`${USERS_URL}/${user}`))
   Promise.all(requests)
     .then((responses) => {
-      const results = responses.map((response) => response.json())
+      const results = responses.map((response) => {
+        if (!response.ok) {
+          throw new Error('Ошибка запроса!')
+        }
+        return response.json()
+      })
+      console.log(results)
       return Promise.all(results)
     })
     .then((users) => {

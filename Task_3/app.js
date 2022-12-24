@@ -35,7 +35,12 @@ function getFastestLoadedPhoto(Ids) {
   Promise.all(requests)
     .then((responses) => {
       console.log(responses)
-      const results = responses.map((response) => response.json())
+      const results = responses.map((response) => {
+        if (!response.ok) {
+          throw new Error('Ошибка запроса!')
+        }
+        return response.json()
+      })
       return Promise.race(results)
     })
     .then((image) => {
