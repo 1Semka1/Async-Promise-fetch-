@@ -48,7 +48,7 @@ function getFastestLoadedPhoto(Ids) {
       const imageHTML = createImageElement(image.url, image.title)
       dataContainer.append(imageHTML)
     })
-    .catch(console.log)
+    .catch(console.error)
     .finally(() => {
       toggleLoader()
     })

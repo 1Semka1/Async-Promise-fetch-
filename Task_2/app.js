@@ -44,9 +44,7 @@ function getUsersByids(usersIds) {
         dataContainer.append(userHTML)
       })
     })
-    .catch((error) => {
-      console.log(error)
-    })
+    .catch(console.error)
     .finally(() => {
       toggleLoader()
     })
